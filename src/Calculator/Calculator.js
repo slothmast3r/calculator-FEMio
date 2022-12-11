@@ -46,6 +46,8 @@ function Calculator() {
   }
   function handleClearClick() {
     setDisplayValue("0");
+    setOperator(null);
+    setOperand(null);
   }
   return (
     <div>
