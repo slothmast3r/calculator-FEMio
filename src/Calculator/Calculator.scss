@@ -1,0 +1,15 @@
+.buttons-layout{
+  width: 33%;
+  display: grid;
+  gap: 1em;
+  grid-template: "auto auto auto auto" ;
+  button{
+    width: 3em;
+    height: 3em;
+
+  }
+  .last-item{
+    grid-column: span 2;
+    width: 100%;
+  }
+}
