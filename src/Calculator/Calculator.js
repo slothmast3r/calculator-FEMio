@@ -136,7 +136,7 @@ function Calculator() {
   }
   return (
     <div>
-      <div>{displayValue}</div>
+      <div className="display-value">{displayValue}</div>
       <div className="buttons-layout">
       {calculatorButtons.map((item) => (
         <button
@@ -150,8 +150,8 @@ function Calculator() {
           {item.name}
         </button>
       ))}
-        <button className="last-item" onClick={handleClearClick}>RESET</button>
-        <button className="last-item" onClick={handleClearClick}>=</button>
+        <button className="last-item" onClick={()=>handleClearClick()}>RESET</button>
+        <button className="last-item" onClick={()=>handleOperatorClick("=")}>=</button>
       </div>
     </div>
   );
