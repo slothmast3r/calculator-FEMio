@@ -1,42 +1,50 @@
-.display-value{
+h1{
+  color: var(--text-color-secondary);
+  font-size: 1em;
+}
+.display-value {
   width: calc(100% - 2em);
   background: var(--screen-bg-color);
   padding: 1em;
   text-align: right;
   color: var(--text-color-secondary);
-  border-radius: 0.25em
+  border-radius: 0.25em;
+  margin-bottom: 0.4em;
 }
 
-
-.buttons-layout{
+.buttons-layout {
   display: grid;
-  gap: 1em;
-  grid-template: "auto auto auto auto" ;
-  padding: 1em;
+  gap: 0.5em;
+  grid-template: "auto auto auto auto";
+  padding: 0.6em;
   background: var(--toggle-bg-kp-color);
-  button{
+  border-radius: 0.25em;
+  button {
+    padding: 0.9rem 2rem 0.5rem 2rem;
     border: none;
     font: inherit;
     cursor: pointer;
-    padding: 0.25em 1.5em;
     outline: inherit;
-    border-radius: 0.25em;
-    &.number-and-operator{
-    background: var(--key-bg-numeric-color);
-    box-shadow: 0 0.25em 0 var(--key-shadow-numeric-color);
-  }
-    &.function{
-    background: var(--key-bg-color);
-    box-shadow: 0 0.25em 0 var(--key-shadow-color);
+    border-radius: 0.3rem;
+    &.number-and-operator {
+      background: var(--key-bg-numeric-color);
+      box-shadow: 0 0.1em 0 var(--key-shadow-numeric-color);
+    }
+    &.function {
+      background: var(--key-bg-color);
+      box-shadow: 0 0.1em 0 var(--key-shadow-color);
       color: var(--text-color-secondary);
-  }
-    &.result{
+      font-size: 1rem;
+    }
+    &.result {
       background: var(--key-bg-toggle-color);
-      box-shadow: 0 0.25em 0 var(--key-shadow-toggle-color);
-
+      box-shadow: 0 0.1em 0 var(--key-shadow-toggle-color);
+      color: var(--text-color-secondary);
+      font-size: 1rem;
     }
   }
-  .last-item{
+  .last-item {
+    padding: 1.6rem 4rem 1.2rem 4rem;
     grid-column: span 2;
     width: 100%;
   }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Calculator.scss"
+import "./Calculator.scss";
 const calculatorButtons = [
   {
     name: "7",
@@ -104,16 +104,15 @@ function Calculator() {
   const [history, setHistory] = useState(null);
   const [operator, setOperator] = useState(null);
   const [operand, setOperand] = useState(null);
-  const [isCleared, setIsCleared] = useState(true)
+  const [isCleared, setIsCleared] = useState(true);
 
   // calculator logic goes here...
   function handleNumberClick(number) {
-    if(isCleared) {
+    if (isCleared) {
       setDisplayValue(displayValue === "0" ? number : displayValue + number);
-    }
-    else{
+    } else {
       setDisplayValue(number);
-      setIsCleared(true)
+      setIsCleared(true);
     }
   }
 
@@ -127,7 +126,7 @@ function Calculator() {
       setDisplayValue(String(result));
     }
     setOperator(newOperator);
-    setIsCleared(false)
+    setIsCleared(false);
   }
   function operate(operator, a, b) {
     switch (operator) {
@@ -143,7 +142,7 @@ function Calculator() {
         return null;
     }
   }
-  function setTheme (theme) {
+  function setTheme(theme) {
     document.documentElement.className = theme;
   }
 
@@ -151,30 +150,43 @@ function Calculator() {
     setDisplayValue("0");
     setOperator(null);
     setOperand(null);
-    setIsCleared(true)
+    setIsCleared(true);
   }
   return (
     <div>
-      <button onClick={()=>setTheme("theme1")}>1</button>
-      <button onClick={()=>setTheme("theme2")}>2</button>
-      <button onClick={()=>setTheme("theme3")}>3</button>
+      <div>
+        <h1>calc</h1>
+        <button onClick={() => setTheme("theme1")}>1</button>
+        <button onClick={() => setTheme("theme2")}>2</button>
+        <button onClick={() => setTheme("theme3")}>3</button>
+      </div>
       <div className="display-value">{displayValue}</div>
       <div className="buttons-layout">
-      {calculatorButtons.map((item) => (
+        {calculatorButtons.map((item) => (
+          <button
+            key={item.id}
+            className={item.className}
+            onClick={() =>
+              item.type === "number"
+                ? handleNumberClick(item.name)
+                : handleOperatorClick(item.id)
+            }
+          >
+            {item.name}
+          </button>
+        ))}
         <button
-          key={item.id}
-          className={item.className}
-          onClick={() =>
-            item.type === "number"
-              ? handleNumberClick(item.name)
-              : handleOperatorClick(item.id)
-          }
+          className="last-item function"
+          onClick={() => handleClearClick()}
         >
-          {item.name}
+          RESET
         </button>
-      ))}
-        <button className="last-item function" onClick={()=>handleClearClick()}>RESET</button>
-        <button className="last-item result" onClick={()=>handleOperatorClick("=")}>=</button>
+        <button
+          className="last-item result"
+          onClick={() => handleOperatorClick("=")}
+        >
+          =
+        </button>
       </div>
     </div>
   );
