@@ -92,66 +92,87 @@ const calculatorButtons = [
     className: "number-and-operator",
   },
   {
-    name: "x",
+    name: "×",
     type: "operator",
-    id: "*",
+    id: "×",
     className: "number-and-operator",
+  },
+  {
+    name: "RESET",
+    type: "function",
+    id: "reset",
+    className: "last-item function",
+  },
+  {
+    name: "=",
+    type: "operator",
+    id: "=",
+    className: "last-item result",
   },
 ];
 
-function Calculator() {
-  const [displayValue, setDisplayValue] = useState("0");
-  const [history, setHistory] = useState(null);
-  const [operator, setOperator] = useState(null);
-  const [operand, setOperand] = useState(null);
-  const [isCleared, setIsCleared] = useState(true);
+const Calculator = () => {
+  const [result, setResult] = useState("0");
+  const [currentNumber, setCurrentNumber] = useState("");
+  const displayValue = currentNumber || result;
 
-  // calculator logic goes here...
-  function handleNumberClick(number) {
-    if (isCleared) {
-      setDisplayValue(displayValue === "0" ? number : displayValue + number);
-    } else {
-      setDisplayValue(number);
-      setIsCleared(true);
-    }
-  }
-
-  function handleOperatorClick(newOperator) {
-    const currentValue = parseFloat(displayValue);
-    if (operand === null) {
-      setOperand(currentValue);
-    } else if (operator) {
-      const result = operate(operator, operand, currentValue);
-      setOperand(result);
-      setDisplayValue(String(result));
-    }
-    setOperator(newOperator);
-    setIsCleared(false);
-  }
-  function operate(operator, a, b) {
-    switch (operator) {
-      case "+":
-        return a + b;
-      case "-":
-        return a - b;
-      case "*":
-        return a * b;
-      case "/":
-        return a / b;
+  const handleButtonClick = (buttonName) => {
+    switch (buttonName) {
+      case "DEL":
+        setCurrentNumber(currentNumber.slice(0, -1));
+        break;
+      case "RESET":
+        setCurrentNumber("");
+        setResult("0");
+        break;
+      case "=":
+        calculateResult();
+        break;
+      case ".":
+        if (!currentNumber.includes(".")) {
+          setCurrentNumber(currentNumber + ".");
+        }
+        break;
       default:
-        return null;
+        setCurrentNumber(currentNumber + buttonName);
+        break;
     }
-  }
+  };
+  const calculateResult = () => {
+    let expression = currentNumber.replace(/×/g, "*"); // replace "x" with "*"
+    let result = 0;
+
+    // parse the expression from left to right
+  let numbers = expression.split(/[-+*/]/);
+  let operators = expression.match(/[-+*/]/g);
+
+    // apply the operators to the numbers
+    for (let i = 0; i < operators.length; i++) {
+      let operator = operators[i];
+      let num1 = parseFloat(numbers[i]);
+      let num2 = parseFloat(numbers[i + 1]);
+
+      if (operator === "+") {
+        result = num1 + num2;
+      } else if (operator === "-") {
+        result = num1 - num2;
+      } else if (operator === "*") {
+        result = num1 * num2;
+      } else if (operator === "/") {
+        result = num1 / num2;
+      }
+
+      numbers[i + 1] = result;
+    }
+
+    setResult(result.toString());
+    setCurrentNumber("");
+  };
+
   function setTheme(theme) {
     document.documentElement.className = theme;
   }
 
-  function handleClearClick() {
-    setDisplayValue("0");
-    setOperator(null);
-    setOperand(null);
-    setIsCleared(true);
-  }
   return (
     <div>
       <div>
@@ -162,33 +183,17 @@ function Calculator() {
       </div>
       <div className="display-value">{displayValue}</div>
       <div className="buttons-layout">
-        {calculatorButtons.map((item) => (
+        {calculatorButtons.map((button) => (
           <button
-            key={item.id}
-            className={item.className}
-            onClick={() =>
-              item.type === "number"
-                ? handleNumberClick(item.name)
-                : handleOperatorClick(item.id)
-            }
+            key={button.id}
+            className={button.className}
+            onClick={() => handleButtonClick(button.name)}
           >
-            {item.name}
+            {button.name}
           </button>
         ))}
-        <button
-          className="last-item function"
-          onClick={() => handleClearClick()}
-        >
-          RESET
-        </button>
-        <button
-          className="last-item result"
-          onClick={() => handleOperatorClick("=")}
-        >
-          =
-        </button>
       </div>
     </div>
   );
-}
+};
 export default Calculator;
