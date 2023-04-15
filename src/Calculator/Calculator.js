@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Calculator.scss";
+import Switcher from "../Switcher/Switcher";
 const calculatorButtons = [
   {
     name: "7",
@@ -173,10 +174,15 @@ const Calculator = () => {
     document.documentElement.className = theme;
   }
 
+  const handlePositionChange = (newPosition) => {
+    console.log(`New circle position: ${newPosition}`);
+  };
+
   return (
     <div>
       <div>
         <h1>calc</h1>
+        <Switcher onPositionChange={handlePositionChange} ></Switcher>
         <button onClick={() => setTheme("theme1")}>1</button>
         <button onClick={() => setTheme("theme2")}>2</button>
         <button onClick={() => setTheme("theme3")}>3</button>

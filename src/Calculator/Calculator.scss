@@ -49,3 +49,37 @@ h1{
     width: 100%;
   }
 }
+
+
+.switcher-container {
+  position: relative;
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+  background-color: lightgray;
+}
+
+.switcher {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  margin-top: -1.25em;
+  margin-left: -1.25em;
+  border-radius: 50%;
+  background-color: blue;
+  transition: all 0.5s ease-in-out;
+}
+
+.switcher-0 {
+  transform: translateX(-7.5em) translateY(0);
+}
+
+.switcher-1 {
+  transform: translateX(0) translateY(7.5em);
+}
+
+.switcher-2 {
+  transform: translateX(7.5em) translateY(0);
+}
