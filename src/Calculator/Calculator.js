@@ -175,7 +175,8 @@ const Calculator = () => {
   }
 
   const handlePositionChange = (newPosition) => {
-    console.log(`New circle position: ${newPosition}`);
+    setTheme(`theme${newPosition}`)
+    console.log(`theme${newPosition}`)
   };
 
   return (
@@ -183,9 +184,6 @@ const Calculator = () => {
       <div>
         <h1>calc</h1>
         <Switcher onPositionChange={handlePositionChange} ></Switcher>
-        <button onClick={() => setTheme("theme1")}>1</button>
-        <button onClick={() => setTheme("theme2")}>2</button>
-        <button onClick={() => setTheme("theme3")}>3</button>
       </div>
       <div className="display-value">{displayValue}</div>
       <div className="buttons-layout">
