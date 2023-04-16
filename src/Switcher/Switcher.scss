@@ -1,8 +1,8 @@
 .switcher {
-    width: 15em;
-    height: 6em;
+    width: 0.5em;
+    height: 0.75em;
     background-color: #4caf50;
-    border-radius: 2em;
+    border-radius: 4em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,8 +10,8 @@
     padding: 0 1em;
   }
   .circle {
-    width: 4em;
-    height: 4em;
+    width: 0.5em;
+    height: 0.5em;
     background-color: #ffffff;
     border-radius: 50%;
     position: absolute;
@@ -20,13 +20,13 @@
   }
   
   .position1 {
-    transform: translate(0, 0);
+    transform: translate(-0.75em, 0);
   }
   
   .position2 {
-    transform: translate(6em, 0);
+    transform: translate(0, 0);
   }
   
   .position3 {
-    transform: translate(12em, 0);
+    transform: translate(0.75em, 0);
   }
