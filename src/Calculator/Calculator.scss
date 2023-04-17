@@ -41,17 +41,23 @@ h1{
 .buttons-layout {
   display: grid;
   gap: 0.5em;
-  grid-template: "auto auto auto auto";
+  grid-template: "auto-fit auto-fit auto-fit auto-fit";
   padding: 0.6em;
   background: var(--toggle-bg-kp-color);
   border-radius: 0.25em;
   button {
     padding: 0.9rem 2rem 0.5rem 2rem;
     border: none;
+    position: relative;
     font: inherit;
+    text-size-adjust: none;
     cursor: pointer;
     outline: inherit;
+    width: 100%;
     border-radius: 0.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &.number-and-operator {
       background: var(--key-bg-numeric-color);
       box-shadow: 0 0.1em 0 var(--key-shadow-numeric-color);
@@ -60,17 +66,24 @@ h1{
       background: var(--key-bg-color);
       box-shadow: 0 0.1em 0 var(--key-shadow-color);
       color: var(--text-color-secondary);
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
     &.result {
       background: var(--key-bg-toggle-color);
       box-shadow: 0 0.1em 0 var(--key-shadow-toggle-color);
       color: var(--text-color-secondary);
-      font-size: 1rem;
+      font-size: 1.5rem;
+
     }
+    @media screen and (max-width: 768px) {
+      padding: 0.9rem 1.5rem 0.5rem 1.5rem;
+    }
+    &::first-child {
+      position: absolute;
+    }
+      
   }
   .last-item {
-    padding: 1.6rem 4rem 1.2rem 4rem;
     grid-column: span 2;
     width: 100%;
   }

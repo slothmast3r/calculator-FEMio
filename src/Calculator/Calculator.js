@@ -205,7 +205,9 @@ const Calculator = () => {
             className={button.className}
             onClick={() => handleButtonClick(button.name)}
           >
+            <div>
             {button.name}
+            </div>
           </button>
         ))}
       </div>
