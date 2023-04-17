@@ -144,8 +144,8 @@ const Calculator = () => {
     let result = 0;
 
     // parse the expression from left to right
-  let numbers = expression.split(/[-+*/]/);
-  let operators = expression.match(/[-+*/]/g);
+    let numbers = expression.split(/[-+*/]/);
+    let operators = expression.match(/[-+*/]/g);
 
     // apply the operators to the numbers
     for (let i = 0; i < operators.length; i++) {
@@ -175,15 +175,27 @@ const Calculator = () => {
   }
 
   const handlePositionChange = (newPosition) => {
-    setTheme(`theme${newPosition}`)
-    console.log(`theme${newPosition}`)
+    setTheme(`theme${newPosition}`);
+    console.log(`theme${newPosition}`);
   };
 
   return (
     <div>
       <div>
-        <h1>calc</h1>
-        <Switcher onPositionChange={handlePositionChange} ></Switcher>
+        <div className="header">
+          <h1>calc</h1>
+          <div className="theme-wrapper">
+            <span>THEME</span>
+            <div>
+              <div className="theme-number">
+              <label>1</label>
+              <label>2</label>
+              <label>3</label>
+              </div>
+              <Switcher onPositionChange={handlePositionChange}></Switcher>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="display-value">{displayValue}</div>
       <div className="buttons-layout">

@@ -11,6 +11,32 @@ h1{
   border-radius: 0.25em;
   margin-bottom: 0.4em;
 }
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  .theme-wrapper{
+    display: flex;
+    align-items: center;
+    color: var(--text-color-secondary);
+    position: relative;
+    span{
+      font-size: 0.4em;
+      padding-right: 1.75em;
+    }
+    .theme-number{
+      display: flex;
+      position: absolute;
+      top: -2em;
+      font-size: 0.4em;
+      justify-content: space-between;
+      width: 5.0em;
+      right: 0.5em;
+
+    }
+  }
+}
 
 .buttons-layout {
   display: grid;
@@ -25,7 +51,7 @@ h1{
     font: inherit;
     cursor: pointer;
     outline: inherit;
-    border-radius: 0.3rem;
+    border-radius: 0.4rem;
     &.number-and-operator {
       background: var(--key-bg-numeric-color);
       box-shadow: 0 0.1em 0 var(--key-shadow-numeric-color);
@@ -48,38 +74,4 @@ h1{
     grid-column: span 2;
     width: 100%;
   }
-}
-
-
-.switcher-container {
-  position: relative;
-  width: 20em;
-  height: 20em;
-  border-radius: 50%;
-  background-color: lightgray;
-}
-
-.switcher {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2.5em;
-  height: 2.5em;
-  margin-top: -1.25em;
-  margin-left: -1.25em;
-  border-radius: 50%;
-  background-color: blue;
-  transition: all 0.5s ease-in-out;
-}
-
-.switcher-0 {
-  transform: translateX(-7.5em) translateY(0);
-}
-
-.switcher-1 {
-  transform: translateX(0) translateY(7.5em);
-}
-
-.switcher-2 {
-  transform: translateX(7.5em) translateY(0);
 }

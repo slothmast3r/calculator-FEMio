@@ -16,8 +16,8 @@ const Switcher = ({ onPositionChange }) => {
     const circleClassName = `circle position${position}`;
   
     return (
-      <div className="switcher" onClick={handleTransition}>
-        <div className={circleClassName}></div>
+      <div className="switcher">
+        <div className={circleClassName}  onClick={handleTransition}></div>
       </div>
     );
   };
