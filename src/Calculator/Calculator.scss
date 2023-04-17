@@ -76,12 +76,11 @@ h1{
 
     }
     @media screen and (max-width: 768px) {
-      padding: 0.9rem 1.5rem 0.5rem 1.5rem;
+      padding: 0.7rem 1rem 0.3rem 1rem;
     }
-    &::first-child {
-      position: absolute;
-    }
-      
+      div{
+        position: absolute;
+      }
   }
   .last-item {
     grid-column: span 2;

@@ -213,7 +213,7 @@ const Calculator = () => {
             key={button.id}
             className={button.className}
             onClick={() => handleButtonClick({...button})}
-          >
+          >ㅤ
             <div>
             {button.name}
             </div>
