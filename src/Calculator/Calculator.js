@@ -112,12 +112,31 @@ const calculatorButtons = [
   },
 ];
 
+const Header = ({handlePositionChange}) => {
+  return ( 
+    <div className="header">
+      <h1>calc</h1>
+      <div className="theme-wrapper">
+        <span>THEME</span>
+        <div>
+          <div className="theme-number">
+          <label>1</label>
+          <label>2</label>
+          <label>3</label>
+          </div>
+          <Switcher onPositionChange={handlePositionChange}></Switcher>
+        </div>
+      </div>
+    </div>
+  );
+};
 const Calculator = () => {
   const [result, setResult] = useState("0");
   const [currentNumber, setCurrentNumber] = useState("");
   const displayValue = currentNumber || result;
 
-  const handleButtonClick = (buttonName) => {
+  const handleButtonClick = (button) => {
+    const buttonName = button.name;
     switch (buttonName) {
       case "DEL":
         setCurrentNumber(currentNumber.slice(0, -1));
@@ -135,20 +154,24 @@ const Calculator = () => {
         }
         break;
       default:
+        if(currentNumber === "" &&  button.type === "operator") {
+          setCurrentNumber(result + buttonName);
+          break;
+        }
         setCurrentNumber(currentNumber + buttonName);
         break;
     }
   };
   const calculateResult = () => {
+    console.log(currentNumber)
     let expression = currentNumber.replace(/×/g, "*"); // replace "x" with "*"
     let result = 0;
 
     // parse the expression from left to right
     let numbers = expression.split(/[-+*/]/);
     let operators = expression.match(/[-+*/]/g);
-
     // apply the operators to the numbers
-    for (let i = 0; i < operators.length; i++) {
+    for (let i = 0; i < operators?.length; i++) {
       let operator = operators[i];
       let num1 = parseFloat(numbers[i]);
       let num2 = parseFloat(numbers[i + 1]);
@@ -176,26 +199,12 @@ const Calculator = () => {
 
   const handlePositionChange = (newPosition) => {
     setTheme(`theme${newPosition}`);
-    console.log(`theme${newPosition}`);
   };
 
   return (
     <div>
       <div>
-        <div className="header">
-          <h1>calc</h1>
-          <div className="theme-wrapper">
-            <span>THEME</span>
-            <div>
-              <div className="theme-number">
-              <label>1</label>
-              <label>2</label>
-              <label>3</label>
-              </div>
-              <Switcher onPositionChange={handlePositionChange}></Switcher>
-            </div>
-          </div>
-        </div>
+        <Header handlePositionChange={handlePositionChange} />
       </div>
       <div className="display-value">{displayValue}</div>
       <div className="buttons-layout">
@@ -203,7 +212,7 @@ const Calculator = () => {
           <button
             key={button.id}
             className={button.className}
-            onClick={() => handleButtonClick(button.name)}
+            onClick={() => handleButtonClick({...button})}
           >
             <div>
             {button.name}
