@@ -137,9 +137,15 @@ const Calculator = () => {
 
   const handleButtonClick = (button) => {
     const buttonName = button.name;
+    let tempNumber = currentNumber;
+    if(currentNumber === "" && ( button.type === "operator" || button.type === "function")) { 
+      tempNumber = result 
+    }
     switch (buttonName) {
       case "DEL":
-        setCurrentNumber(currentNumber.slice(0, -1));
+        let tempResult = tempNumber.slice(0, -1);
+        setCurrentNumber(tempResult? tempResult : "");
+        setResult(tempResult? tempResult : "0");
         break;
       case "RESET":
         setCurrentNumber("");
@@ -150,15 +156,11 @@ const Calculator = () => {
         break;
       case ".":
         if (!currentNumber.includes(".")) {
-          setCurrentNumber(currentNumber + ".");
+          setCurrentNumber(tempNumber + ".");
         }
         break;
       default:
-        if(currentNumber === "" &&  button.type === "operator") {
-          setCurrentNumber(result + buttonName);
-          break;
-        }
-        setCurrentNumber(currentNumber + buttonName);
+        setCurrentNumber(tempNumber + buttonName);
         break;
     }
   };
